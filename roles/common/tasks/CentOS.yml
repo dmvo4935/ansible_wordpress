@@ -1,0 +1,10 @@
+---
+
+- yum:
+   name: "{{ item }}"
+   state: present
+  with_items:
+   - httpd
+   - php
+   - php-mysql
+   - MySQL-python

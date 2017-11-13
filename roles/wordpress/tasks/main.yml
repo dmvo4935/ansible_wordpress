@@ -1,0 +1,35 @@
+---
+
+- include_vars:
+   file: "vars/{{ ansible_os_family }}.yml"
+
+- get_url:
+   url: https://wordpress.org/latest.tar.gz
+   dest: /tmp/wordpress_latest.tar.gz
+
+#- unarchive: 
+#    src: /tmp/wordpress_latest.tar.gz
+#    dest: /var/www/html
+#    extra_opts: "--strip-components=1"
+#    remote_src: yes
+#    owner: apache
+#    group: apache
+#  notify: restart apache 
+
+- shell: tar -xf /tmp/wordpress_latest.tar.gz
+  args:
+   chdir: /var/www/html
+  notify: restart apache
+
+- file:
+   state: directory
+   path: /var/www/html/wordpress
+   mode: 0777
+   recurse: yes
+
+- command: test -x /usr/sbin/getenforce
+  register: selinux_state
+  ignore_errors: yes
+
+- include: selinux.yml
+  when: selinux_state.rc == 0 

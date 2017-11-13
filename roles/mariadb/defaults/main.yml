@@ -1,0 +1,10 @@
+---
+
+#mysql_root_passwd: "KNb3gFCcmq"
+
+mysql_secure_installation: false
+
+mysql_conf_tpl: mysql_settings.j2
+mysql_conf_file: 60-settings.cnf
+
+

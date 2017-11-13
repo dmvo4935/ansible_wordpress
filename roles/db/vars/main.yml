@@ -1,0 +1,12 @@
+---
+
+users:
+  - name: "{{ db_user }}" 
+    password: "{{ db_passwd }}"
+    privs: 
+      - "{{ db_name }}.*:ALL"
+    hosts_from: 
+      - "%"
+      - "127.0.0.1"
+      - "localhost"
+

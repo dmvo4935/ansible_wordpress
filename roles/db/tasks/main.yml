@@ -1,0 +1,17 @@
+---
+
+- mysql_db:
+   name: "{{ db_name }}"
+   state: present
+
+- mysql_user:
+    name: "{{ item.0.name }}"
+    password: "{{ item.0.password }}"
+    priv: "{{ item.0.privs | join('/') }}"
+    host: "{{ item.1 }}"
+    state: present
+  with_subelements:
+     - "{{ users }}"
+     - hosts_from
+  notify: flush privileges
+

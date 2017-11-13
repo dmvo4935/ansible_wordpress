@@ -1,0 +1,11 @@
+---
+
+- hosts: dbservers aws_wp_db
+  roles:
+    - mariadb
+
+- hosts: webservers aws_wp
+  roles:
+    - common
+    - wordpress
+

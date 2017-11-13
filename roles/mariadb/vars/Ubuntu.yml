@@ -1,0 +1,5 @@
+---
+
+mysql_conf_dir: /etc/mysql/mariadb.conf.d
+
+mysql_service_name: mysql.service 

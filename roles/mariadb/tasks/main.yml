@@ -1,0 +1,20 @@
+---
+
+- include_vars: file="vars/mysql.yml"
+
+- include_vars: file="vars/{{ ansible_os_family }}.yml"
+
+- include: "{{ ansible_os_family }}.yml"
+
+- name: Start and enable service
+  service: name={{ mysql_service_name }} state=started enabled=yes
+
+- name: Add configuration
+  template: src={{ mysql_conf_tpl }} dest={{ mysql_conf_dir }}/{{ mysql_conf_file }} owner=root group=root mode=0644
+  when: mysql_conf_tpl != 'change_it'
+  notify: restart mysql
+
+- include: mysql_secure_installation.yml
+  when: mysql_secure_installation and mysql_root_passwd is defined
+
+- include_role: name=db   

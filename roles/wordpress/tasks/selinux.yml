@@ -1,0 +1,16 @@
+---
+- command: getenforce
+  register: se_state
+
+- block:
+  - seboolean:
+     name: httpd_can_network_connect_db
+     state: true
+     persistent: true
+  - sefcontext:
+     target: '/var/www/html/wordpress(/.*)?'
+     setype: httpd_sys_rw_content_t
+     state: present
+     reload: true
+  - command: restorecon -r /
+  when: se_state.stdout == "Enforcing"

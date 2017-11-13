@@ -1,0 +1,9 @@
+---
+
+- name: Install MariaDB
+  apt: pkg={{ item }} state=present
+  with_items:
+    - mariadb-server
+    - mariadb-client
+    - python-mysqldb
+

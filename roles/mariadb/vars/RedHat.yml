@@ -1,0 +1,5 @@
+---
+
+mysql_conf_dir: /etc/my.cnf.d
+
+mysql_service_name: mariadb.service
