@@ -1,10 +1,12 @@
 ---
 
-- hosts: dbservers aws_wp_db
+#- hosts: dbservers aws_wp_db google_wp_db
+- hosts: google_wp_db
   roles:
     - mariadb
 
-- hosts: webservers aws_wp
+#- hosts: webservers aws_wp google_wp
+- hosts: google_wp
   roles:
     - common
     - wordpress

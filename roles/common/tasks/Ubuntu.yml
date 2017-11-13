@@ -9,3 +9,4 @@
    - php-mysql
    - libapache2-mod-php
    - python-mysqldb
+   - python-apt
