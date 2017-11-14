@@ -3,15 +3,6 @@
 # UPDATE mysql.user SET Password=PASSWORD('mysecret') WHERE User='root';
 # FLUSH PRIVILEGES;
 
-- name: Set root Password
-  block:
-    - mysql_user: name=root host=localhost password={{ mysql_root_passwd }} state=present
-    - template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0600
-    - mysql_user: name=root host={{ item }} password={{ mysql_root_passwd }} state=present
-      with_items:
-       - 127.0.0.1
-       - ::1
-
 - name: Reload privilege tables
   command: 'mysql -ne "{{ item }}"'
   with_items:

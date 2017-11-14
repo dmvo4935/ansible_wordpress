@@ -9,12 +9,22 @@
 - name: Start and enable service
   service: name={{ mysql_service_name }} state=started enabled=yes
 
+- name: Set root Password
+  block:
+    - mysql_user: name=root host=localhost password={{ mysql_root_passwd }} state=present
+    - template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0600
+    - mysql_user: name=root host={{ item }} password={{ mysql_root_passwd }} state=present
+      with_items:
+       - 127.0.0.1
+       - ::1
+  when: mysql_root_passwd is defined
+
 - name: Add configuration
   template: src={{ mysql_conf_tpl }} dest={{ mysql_conf_dir }}/{{ mysql_conf_file }} owner=root group=root mode=0644
   when: mysql_conf_tpl != 'change_it'
   notify: restart mysql
 
 - include: mysql_secure_installation.yml
-  when: mysql_secure_installation and mysql_root_passwd is defined
+  when: mysql_secure_installation
 
-- include_role: name=db   
+#- include_role: name=db   

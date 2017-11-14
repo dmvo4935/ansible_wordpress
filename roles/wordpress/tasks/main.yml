@@ -3,6 +3,9 @@
 - include_vars:
    file: "vars/{{ ansible_os_family }}.yml"
 
+- include_tasks: "{{ ansible_os_family }}.yml"
+   
+
 - get_url:
    url: https://wordpress.org/latest.tar.gz
    dest: /tmp/wordpress_latest.tar.gz
