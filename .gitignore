@@ -1,3 +1,4 @@
-#inventory
-#vault_passwd
+inventory
+vault_passwd
+mykey
 *.retry
