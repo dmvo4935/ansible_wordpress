@@ -1,3 +1,3 @@
 inventory
-vault_passwd
+#vault_passwd
 *.retry
