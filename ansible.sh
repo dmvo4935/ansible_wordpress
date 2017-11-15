@@ -1,12 +1,11 @@
 #!/bin/bash
 
-WORKDIR=/opt/ansible_wordpress
-SSH_KEY=$WORKDIR/mykey
-PLAYBOOK=$WORKDIR/wordpress.yml
-INVENTORY=$WORKDIR/inventory
+SSH_KEY=mykey
+PLAYBOOK=wordpress.yml
+INVENTORY=inventory
 USER=allcome_0
-VAULT_FILE=$WORKDIR/mysql.yml
-VAULT_PASSWD=$WORKDIR/vault_passwd
+VAULT_FILE=mysql.yml
+VAULT_PASSWD=vault_passwd
 
 chmod 0400 $SSH_KEY
 
