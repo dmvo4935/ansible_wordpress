@@ -11,4 +11,4 @@ WORKDIR /opt/ansible_wordpress
 ADD inventory /opt/ansible_wordpress
 ADD ansible.sh /opt/ansible_wordpress
 
-CMD ["ansible.sh"]
+CMD [ansible.sh]
