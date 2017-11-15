@@ -8,8 +8,7 @@ RUN cd /opt
 RUN git clone https://github.com/dmvo4935/ansible_wordpress.git 
 WORKDIR /opt/ansible_wordpress
 
-#COPY ./* /opt/ansible_wordpress
-#ADD inventory /opt/ansible_wordpress
-#ADD ansible.sh /opt/ansible_wordpress
+ADD inventory /opt/ansible_wordpress
+ADD ansible.sh /opt/ansible_wordpress
 
-CMD [/opt/ansible_wordpress/ansible.sh]
+CMD [ansible.sh]
