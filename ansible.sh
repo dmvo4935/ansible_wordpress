@@ -7,6 +7,8 @@ USER=allcome_0
 VAULT_FILE=mysql.yml
 VAULT_PASSWD=vault_passwd
 
+chmod 0400 $SSH_KEY
+
 ansible-playbook \
 -i $INVENTORY \
 -l 'google_wp google_wp_db' \
