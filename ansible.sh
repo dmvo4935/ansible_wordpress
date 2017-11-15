@@ -9,6 +9,12 @@ VAULT_PASSWD=vault_passwd
 
 chmod 0400 $SSH_KEY
 
+cat << EOF > ~/.ansible.cfg
+[defaults]
+host_key_checking = False
+EOF
+
+
 ansible-playbook \
 -i $INVENTORY \
 -l 'google_wp google_wp_db' \

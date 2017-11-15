@@ -12,9 +12,5 @@ RUN git clone https://github.com/dmvo4935/ansible_wordpress.git
 #ADD inventory /opt/ansible_wordpress
 #ADD ansible.sh /opt/ansible_wordpress
 
-RUN cat << EOF > ~/.ansible.cfg
-[defaults]
-host_key_checking = False
-EOF
 
 CMD [ "ansible_wordpress/ansible.sh" ]
