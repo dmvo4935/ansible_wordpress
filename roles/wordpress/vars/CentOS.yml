@@ -1,3 +1,4 @@
 ---
 
 apache_service_name: httpd
+apache_main_conf: /etc/httpd/conf/httpd.conf

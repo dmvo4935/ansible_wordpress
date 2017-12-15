@@ -1,3 +1,4 @@
 ---
 
 apache_service_name: apache2
+apache_main_conf: /etc/apache2/apache2.conf

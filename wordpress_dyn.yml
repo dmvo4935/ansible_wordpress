@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  vars_files: 
+   - mysql.yml
+  
+  tasks:
+
+  - name: Configuring web server
+    include_role: name=wordpress
+    when: inventory_hostname.find('WP_web') != -1
+
+  - name: Configuring db server
+    include_role: name=db_mysql
+    when: inventory_hostname.find('WP_db') != -1 
+

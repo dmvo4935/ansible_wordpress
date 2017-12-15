@@ -4,7 +4,7 @@
    file: "vars/{{ ansible_os_family }}.yml"
 
 #- include_tasks: "{{ ansible_os_family }}.yml"
-- include: "{{ ansible_os_family }}.yml"
+- include: "roles/wordpress/tasks/{{ ansible_os_family }}.yml"
    
 
 - get_url:
@@ -25,11 +25,23 @@
    chdir: /var/www/html
   notify: restart apache
 
+- template:
+   src: wp-config-sample.php.j2
+   dest: /var/www/html/wordpress/wp-config.php
+   backup: yes
+
 - file:
    state: directory
    path: /var/www/html/wordpress
    mode: 0777
    recurse: yes
+
+- lineinfile:
+   path: '{{apache_main_conf}}'
+   line: |
+    RewriteEngine On
+    RewriteRule ^/?$ /wordpress/$1
+   insertafter: '^<Directory "/var/www/html">'   
 
 - command: test -x /usr/sbin/getenforce
   register: selinux_state
