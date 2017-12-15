@@ -1,4 +1,4 @@
-<powershell>
+#<powershell>
 #Requires -Version 3.0
 
 # Configure a Windows host for remote management with Ansible
@@ -324,4 +324,4 @@ Else
     Throw "Unable to establish an HTTP or HTTPS remoting session."
 }
 Write-VerboseLog "PS Remoting has been successfully configured for Ansible."
-</powershell>
+#</powershell>
